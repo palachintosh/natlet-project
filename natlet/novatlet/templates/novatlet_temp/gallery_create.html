@@ -1,0 +1,41 @@
+{% extends 'novatlet_temp/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    gallery-create - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'gallery_create_url' %}" method="post" enctype="multipart/form-data" multiple = "True",>
+        {% csrf_token %}
+    
+        {% for field in gallery %}
+            <div class="form-group">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            
+                {{ field.label }}
+                {{ field }}
+
+            </div>
+        {% endfor %}
+    
+        {{ location_field }}
+        {% if location_field.errors %}
+            {{ location_field.errors }}
+        {% endif %}
+        <p></p>
+        {{ gallery_0.img_object }}
+        <p></p>
+        
+
+
+        <button type="submit" class="btn btn-dark float-right">Create gallery</button>
+    </form>
+
+
+{% endblock %}

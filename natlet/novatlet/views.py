@@ -1,0 +1,102 @@
+from django.shortcuts import render
+from django.shortcuts import redirect
+from .models import Post, Gallery
+from .forms import *
+
+from django.views.generic import View
+from django.shortcuts import get_object_or_404
+from django.core.files.base import ContentFile
+
+import os.path
+
+# Create your views here.
+
+class Index(View):
+    model = Post
+
+    def get(self, request):
+        posts = Post.objects.all()
+
+        return render(request, 'novatlet_temp/index.html', context={"posts": posts})
+
+
+class PostDetail(View):
+    model = Post
+
+    def get(self, request, slug):
+        get_object = get_object_or_404(self.model, slug__iexact=slug)
+        p = get_object.related_gallery
+        gallery = Photos.objects.filter(location=p)
+
+        return render(request, 'novatlet_temp/post_detail.html', context={
+                        self.model.__name__.lower(): get_object,
+                        'gallery': gallery,
+                        })
+
+
+class GallaryCreate(View):
+    model = [LocationForm, PhotoForm]
+
+    def get(self, request):
+        gallery_form = self.model[0]
+        gallery_form_0 = self.model[1]
+
+        location_field = gallery_form_0.GetPhotoField()
+
+        return render(request, 'novatlet_temp/gallery_create.html', context={
+                        'gallery': gallery_form,
+                        'gallery_0': gallery_form_0,
+                        'location_field': location_field, 
+                        })
+
+                        
+    def post(self, request):
+        if request.POST:
+            bound_form_0 = self.model[0](request.POST) #LocationForm: dir_object
+            bound_form_1 = self.model[1](request.POST, request.FILES) #PhotoForm: location, img_object 
+        
+            if bound_form_0.is_valid() or bound_form_1.is_valid():
+                def save_after_validate(self, request, directory_object):
+                    
+                    for f in request.FILES.getlist('img_object'):
+                        data = f.read()
+                        photo = Photos(location = Location.objects.order_by('id').last()) # it works
+                        photo.img_object.save(save_path(directory_object) + str(f.name), ContentFile(data))
+                        photo.save()
+                        print("success 2 !", photo)
+
+                def save_path(directory_object):
+                    save_path = directory_object + "/photos/"
+                    return save_path
+            
+
+                if not bound_form_0.cleaned_data.get('boolean'):
+                    print("we are here")
+                    if request.POST['dir_object'] == '':
+                        return render(request, 'novatlet_temp/gallery_create.html', context={
+                                                'gallery': bound_form_0,
+                                                'gallery_0': bound_form_1,
+                                                'location_field': bound_form_1.GetPhotoField(), 
+                                                    })
+                    bound_form_0.save()
+                    directory_object = request.POST['dir_object']
+
+                    save_after_validate(self, request, directory_object)
+
+
+                if bound_form_0.cleaned_data.get('boolean'):
+                    if request.POST['dir_object'] != '':
+                        return render(request, 'novatlet_temp/gallery_create.html', context={
+                                                'gallery': bound_form_0,
+                                                'gallery_0': bound_form_1,
+                                                'location_field': bound_form_1.GetPhotoField(), 
+                                                    })
+                    directory_object = Location.objects.get(id=request.POST['location']).__str__()
+                    
+                    save_after_validate(self, request, directory_object)
+                 
+            return render(request, 'novatlet_temp/gallery_create.html', context={
+                                       'gallery': bound_form_0,
+                                       'gallery_0': bound_form_1,
+                                       'location_field': bound_form_1.GetPhotoField(), 
+                                         })

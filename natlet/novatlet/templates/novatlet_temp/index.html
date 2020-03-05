@@ -1,0 +1,23 @@
+{% extends 'novatlet_temp/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block content %}
+
+    {% for i in posts %}
+        {% include 'novatlet_temp/includes/post_card_template.html' %}
+        <!-- <p class="test_static">{{ i.title }}</p>
+        <p>{{ i.description }}</p>
+        <p>{{ i.post_date }}</p>
+        <img src="{{ i.post_img.url }}" />
+        <p>{{ i.body }}</p> -->
+    {% endfor %}
+
+{% endblock %}  
+
+{% block sidebar %}
+    {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
+{% endblock %}

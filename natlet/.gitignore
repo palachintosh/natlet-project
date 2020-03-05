@@ -1,0 +1,13 @@
+### Django ###
+
+*.log
+*.pot
+*.pyc
+__pycache__/
+/natlet/__pycache__/
+local_settings.pyc
+atlet_site_db.sqlite3
+/media
+/static
+/natlet/static
+/novatlet/__pycache__/
