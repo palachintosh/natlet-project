@@ -19,9 +19,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include
 from .views import based_page
+from django.conf.urls import handler404
+from novatlet.views import custom_handler404
+
 
 urlpatterns = [
     path('', based_page),
     path('novatlet/', include('novatlet.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = custom_handler404

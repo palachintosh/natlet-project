@@ -1,0 +1,12 @@
+{% extends 'novatlet_temp/base_page.html' %}
+
+{% block title %}
+    Our tags - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% for tag in get_tag %}
+        <a href="{{ tag.get_absolute_url }}">{{ tag.tag_title }}</a>
+    {% endfor %}
+
+{% endblock %}

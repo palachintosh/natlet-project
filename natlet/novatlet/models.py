@@ -26,6 +26,7 @@ class Post(models.Model):
     post_img = models.ImageField(upload_to='images/', null=True)
 
     related_gallery = models.ForeignKey(Location, models.SET_NULL, blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
     def get_absolute_url(self):
         return reverse('post_page_url', kwargs={'slug': self.slug})
@@ -34,6 +35,16 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
+class Tag(models.Model):
+    tag_title = models.CharField(max_length=70, db_index=True, unique=True)
+    slug = models.SlugField(max_length=150, blank=True, unique=True)
+
+    def __str__(self):
+        return self.tag_title
+
+    def get_absolute_url(self):
+        return reverse('tag_detail_url', kwargs={'slug': self.slug})
 
 
 class Gallery(models.Model):

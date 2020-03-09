@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Page not found - {{ block.super }}
+{% endblock %}
+
+{% block body_style %}
+    <style>
+        body {
+            background-image: url("{% static 'images/bg-image.jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card-title {
+            text-align: center; 
+            text-align: -moz-center; 
+            vertical-align: baseline; 
+        }
+
+        .btn {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+            border-radius: 0.15rem;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+{% endblock %}
+
+{% block handler %}
+    <div class="container-fluid mt-2">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="logo d-inline">
+                    <img src="{% static 'images/Log1.png' %}"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">Ooooops.. looks like
+                                <span style="font-size: 4rem; vertical-align: middle; margin-right: .4rem; margin-left: .4rem"> 404</span>error</h5>
+                        </div>
+                        <hr>
+                            <p class="card-text">Something went wrong!</p>
+                        <p style=><b>What you can do?</b></p>
+                        <p>For example, chek URL link in the browser link-field. Maybe,it wrote wrong. <br>
+                        If it gave no result, click this weird green button and go back to the News.<br></p>
+                        <a href="{% url 'index_page_url' %}" class="btn btn-success">Go to the News!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

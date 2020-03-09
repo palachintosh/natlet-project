@@ -10,9 +10,9 @@
     <h3>{{ post.title }}</h3>
     <p> {{ post.body }}</p>
     <p> {{ post.body }}</p>
-    <img src="{{ post.post_img.url }}" alt="">
+    <!-- <img src="{{ post.post_img.url }}" alt=""> -->
+    {% include 'novatlet_temp/includes/image-card.html' %}
     <p> {{ post.body }}</p>
-
 
     {% include 'novatlet_temp/includes/slider.html' %}
 

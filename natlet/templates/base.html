@@ -26,13 +26,17 @@
             Home
         {% endblock %}
     </title>
+    {% block body_style %}
+    {% endblock%}
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="{% url 'index_page_url' %}">Home</a>
+        <a class="navbar-brand" href="{% url 'index_page_url' %}">News</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link" href="#">News</a>
@@ -44,7 +48,7 @@
                 <a class="nav-link" href="#">Countacts</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="#">Something else </a>
+                    <a class="nav-link" href="#">Our tags </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Disabled</a>
@@ -68,23 +72,15 @@
         </div>
     </div> -->
     
-    <div class="header-border d-flex justify-content-center justify-content-sm-center justify-content-md-start mt-2">
-        <div class="logo d-inline-flex d-sm-flex d-md-inline">
-                <img src="{% static 'images/Log1.png' %}"/>
-        </div>
-        <div class="title d-none d-sm-none d-md-block d-xl-block">
-            <h2 class="title-top">Легкая атлетика <span>Нововолынск</span></h2>
-            <small class="title-desc-bottom">Официальный сайт ДЮСШ Нововолынск, отделение легкой атлетики</small> 
-        </div>
-    </div>
-    
+    {% block logo %}{% endblock %}
+    {% block handler %} {% endblock %}
     <div class="container-fluid mt-2">
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <div class="col-md-10 col-lg-7">
                 {% block content %}<!--Content will be here-->{% endblock %}
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 d-none d-md-none d-lg-block">
                 {% block sidebar %}<!--Sidebar-->{% endblock %}
             </div>
         </div>

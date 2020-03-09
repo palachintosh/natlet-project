@@ -15,21 +15,53 @@
 
 <!-- d-none d-sm-none d-md-inline-block d-xl-inline-block  -->
 
-<div class="card mt-4 pb-2">
+<!-- <div class="card mt-4 pb-2">
     <div class="d-flex justify-content-start">
         <div class="card-img d-none d-sm-none d-md-block d-xl-block">
-            <img src="{{ i.post_img.url }}" width="100%" />
+            <a href="{{ post.get_absolute_url }}"><img src="{{ post.post_img.url }}" width="100%" /></a>
         </div>
         <div class="d-flex flex-column">
             <div class="card-header w-100 mt-2" style="height: 50px;">
-                <h5 class="card-title">{{ i.title }}</h5>
-                <small class="">{{ i.post_date }}</small>
+                <h5 class="card-title">{{ post.title }}</h5>
+                <small class="">{{ post.post_date }}</small>
             </div>
             <div class="card-body">
-                <p class="card-text">{{ i.description }}</p>
+                <p class="card-text">{{ post.description }}</p>
             </div>
-            <a href="{{ i.get_absolute_url }}" class="btn none-style None-color btn-outline-none-style float-right align-self-end">Читать ></a>
         </div>
     </div>
+    <a href="{{ post.get_absolute_url }}" class="btn">Читать ></a>
+    <div class="tag-string">
+            <p style="margin-left: .8rem;">Tags:</p>
+            {% for tag in post.tags.all %}
+                <small><a href="{{ tag.get_absolute_url }}">{{ tag.tag_title }}</a> </small>
+            {% endfor %}
+        </div>
 </div>
-<hr>
+<hr> -->
+
+<div class="card mt-4 pb-2">
+        <div class="row row-cols-2 justify-content-start">
+            <div class="col card-img d-none d-sm-none d-md-block d-xl-block">
+                <a href="{{ post.get_absolute_url }}"><img src="{{ post.post_img.url }}" width="100%" /></a>
+            </div>
+            <div class="col flex-column">
+                <div class="card-header w-100 mt-2" style="height: 50px;">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <small class="">{{ post.post_date }}</small>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.description }} <a href="{{ post.get_absolute_url }}" class="d-inline-block d-sm-inline-block d-md-none">Читать</a></p>
+                </div>
+                <a href="{{ post.get_absolute_url }}" class="d-none d-md-block custom-btn">Читать ></a>
+
+            </div>
+        </div>
+        <div class="tag-string">
+                <p style="margin-left: .8rem;">Tags:</p>
+                {% for tag in post.tags.all %}
+                    <small><a href="{{ tag.get_absolute_url }}">{{ tag.tag_title }}</a> </small>
+                {% endfor %}
+            </div>
+    </div>
+    <hr>

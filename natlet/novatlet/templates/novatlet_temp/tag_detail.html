@@ -1,0 +1,15 @@
+{% extends 'novatlet_temp/base_page.html' %}
+
+{% block title %}
+    {{ tag_detail.tag_title}} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    
+    <h3>We found this post for tag <a href="{{ tag_detail.get_absolute_url }}">{{ tag_detail.tag_title|lower }}</a>:</h3>
+     
+    {% for post in tag_detail.posts.all %} <!--Get posts list-->
+        {% include 'novatlet_temp/includes/post_card_template.html' %}
+    {% endfor %}
+
+{% endblock %}

@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render_to_response
 from .models import Post, Gallery
 from .forms import *
 
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
-
+from django.template import RequestContext
 import os.path
 
 # Create your views here.
@@ -100,3 +101,28 @@ class GallaryCreate(View):
                                        'gallery_0': bound_form_1,
                                        'location_field': bound_form_1.GetPhotoField(), 
                                          })
+
+class TagList(View):
+    model = Tag
+
+    def get(self, request):
+        get_tag = Tag.objects.all()
+        return render(request, 'novatlet_temp/tag_list.html', context={'get_tag': get_tag})
+
+class TagDetail(View):
+    model = Tag
+    def get(self, request, slug):
+        get_tag = get_object_or_404(self.model, slug__iexact=slug)
+        return render(request, 'novatlet_temp/tag_detail.html', context={'tag_detail': get_tag})
+
+
+
+# handlers zone
+
+def custom_handler404(request, exception):
+    context = RequestContext(request)
+    response = render_to_response('404.html', context={'context': context})
+    response.status_code = 404
+    return response
+
+#Мед в голове
