@@ -83,6 +83,35 @@ class Photos(models.Model):
 #     #related_path.upload_to = save_path(args, kwargs)
 #     print(instance)
     
+    #related_path.save()
+
+class Award(models.Model):
+    title = models.CharField(max_length=300, db_index=True)
+    city = models.CharField(max_length=100)
+    score_year = models.DateField()
+    count = models.PositiveIntegerField()
+    award_icon = models.ImageField(upload_to='images/award_icon/', db_index=True, verbose_name='aw_icons')
 
     
-    #related_path.save()
+    def __str__(self):
+        return self.title
+
+
+class Athlete(models.Model):
+    name = models.CharField(max_length=150, db_index=True)
+    second_name = models.CharField(max_length=150, db_index=True)
+    slug = models.SlugField(blank=True, unique=True)
+    birth_year = models.DateField()
+    description = models.TextField(blank=True)
+    picture = models.ImageField(upload_to='images/athletes/', db_index=True, default='images/image.jpg')
+    awards = models.ForeignKey(Award, models.SET_NULL, related_name='award', blank=True, null=True)
+
+    def __str__(self):
+        return "{} {}".format(self.name, self.second_name)
+    
+   
+    
+    
+
+    
+    

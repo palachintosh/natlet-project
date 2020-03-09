@@ -1,0 +1,13 @@
+{% extends 'novatlet_temp/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    Ours athlete - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% for ath in get_athlete %}
+        {% include 'novatlet_temp/includes/athlete_card.html' %}
+    {% endfor %}
+
+{% endblock %}

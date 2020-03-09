@@ -126,3 +126,11 @@ def custom_handler404(request, exception):
     return response
 
 #Мед в голове
+
+class AthleteView(View):
+    model = Athlete
+
+    def get(self, request):
+        get_athlete = Athlete.objects.all()
+
+        return render(request, 'novatlet_temp/athlete_list.html', locals())
