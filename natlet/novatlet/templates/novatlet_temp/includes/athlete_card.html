@@ -1,7 +1,16 @@
 <div class="card mb-2">
     <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="{{ ath.picture.url }}" class="card-img" alt="...">
+      <div class="col-md-4 awards-block">
+        <div class="awards">
+            <ul>
+                {% for award in ath.athletes_awards.all %}
+                  <li>
+                    <img src="{{ award.award_icon.url }}" title="{{ award.title }}. Всего: {{ award.count }}" alt="">
+                  </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <img src="{{ ath.picture.url }}" class="card-img" style="padding: 0;" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">

@@ -6,6 +6,38 @@
 {% endblock %}
 
 {% block content %}
+    <form class="form-inline" style="align-items: baseline;" action="{% url 'athlete_list_url' %}" method="post">
+        {% csrf_token %}
+        <label style="margin-right: 15px;">Фильтр: </label>
+        <label class="sr-only">Пол: </label>
+        {{ filter_row.gender }}
+
+        <label class="sr-only">Имя </label>
+        {{ filter_row.name }}
+
+        <label class="sr-only">Имя </label>
+        {% if field_row.errors %}
+            <div class="alert alert-denger">
+                {{ field_row.errors }}
+            </div>
+        {% endif %}
+        {{ filter_row.birthday }}
+        
+
+        <button type="submit" class="custom-btn">Знайти</button>
+    </form>
+
+
+
+    {% if av_content %}
+        {% include 'novatlet_temp/includes/alert_success.html' %}
+    {% elif av_content <= 0 %}
+        {% include 'novatlet_temp/includes/alert.html' %}
+    {% endif %}
+
+
+
+
     {% for ath in get_athlete %}
         {% include 'novatlet_temp/includes/athlete_card.html' %}
     {% endfor %}

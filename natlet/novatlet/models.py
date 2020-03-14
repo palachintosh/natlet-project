@@ -98,13 +98,19 @@ class Award(models.Model):
 
 
 class Athlete(models.Model):
+    SET_GENDER = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    ]
+    gender = models.CharField(max_length=6, choices=SET_GENDER, default='Male')
     name = models.CharField(max_length=150, db_index=True)
     second_name = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(blank=True, unique=True)
     birth_year = models.DateField()
     description = models.TextField(blank=True)
     picture = models.ImageField(upload_to='images/athletes/', db_index=True, default='images/image.jpg')
-    awards = models.ForeignKey(Award, models.SET_NULL, related_name='award', blank=True, null=True)
+    athletes_awards = models.ManyToManyField('Award', blank=True, related_name='athletesAw')
+    #awards = models.ForeignKey(Award, models.SET_NULL, related_name='award', blank=True, null=True)
 
     def __str__(self):
         return "{} {}".format(self.name, self.second_name)
