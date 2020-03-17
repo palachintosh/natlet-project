@@ -1,0 +1,49 @@
+{% extends 'novatlet_temp/base_page.html' %}
+
+{% block title %}
+    Contact with us - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+    <h5 class="mt-4">Запитати або дiзнатися бiльше про ДЮСШ: </h5>
+    <hr>
+
+    <div class="flex">
+        <p>Наша адреса: ----------------</p>
+        <p><b>Зв'язатися з нами можна за наступними номерами:</b></p>
+        <ul style="list-style: none;">
+            <li style="line-height: 2rem;">Мобільний телефон: +380967580750;</li>
+            <li>Стаціонарний телефон: (03344)4-10-17.</li>
+        </ul>
+    </div>
+
+    <div class="mt-4 mb-4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1061.9014450716015!2d24.15112146694969!3d50.726589656376895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2spl!4v1584226938015!5m2!1sru!2spl"
+        width="100%" height="450" frameborder="0" style="border:0; box-shadow: 3px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    <hr>
+    <p class="mt-4">Не знайшли вiдповiдi? Напишiть нам: </p>
+
+
+    <div class="row justify-content-end">
+        <div class="col-11">
+            <form class="form contact-form" action="{% url 'contact_p_url' %}" method="post">
+                {% csrf_token %}
+
+                {% for field in contact_form %}
+                    {{ field.label }}
+                    {{ field }}
+                {% endfor %}
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha float-left mt-2" data-sitekey="6Lf92-EUAAAAANywzHdBhjgQ3GrFf_apwe0ZDWqL"></div>
+
+                <button type="submit" class="custom-btn mt-2">Надiслати</button>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

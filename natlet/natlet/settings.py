@@ -27,11 +27,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]']
 
+#DEFAULT_FROM_EMAIL = 'parser9000@gmail.com'
+
+#EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.beget.com'
+EMAIL_HOST_USER = 'blog@palachintosh.com'
+EMAIL_HOST_PASSWORD = 'ieb9b7&h'
+EMAIL_PORT = 25
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'novatlet',
+    'contacts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,3 +143,6 @@ STATIC_URL = '/static/www/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+GOOGLE_RECAPTCHA_KEY = '6Lf92-EUAAAAANywzHdBhjgQ3GrFf_apwe0ZDWqL'
+GOOGLE_RECAPTCHA_SECRET_KEY = '6Lf92-EUAAAAABbiVG2vHe7NCzEgd_Co78cf-ppB'

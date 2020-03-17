@@ -26,6 +26,7 @@
             Home
         {% endblock %}
     </title>
+    {% block header %}{% endblock %}
     {% block body_style %}
     {% endblock%}
 </head>
@@ -45,18 +46,26 @@
                 <a class="nav-link" href="{% url 'athlete_list_url' %}">Hale of fame</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Countacts</a>
+                <a class="nav-link" href="{% url 'contact_p_url' %}">Contacts</a>
             </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="#">Competition</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Competition
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Calendar</a>
+                  <a class="dropdown-item" href="#">Future competitions</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'archive_url' %}">Archive</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Disabled</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control input-search-rad none-style None-color btn-outline-none-style" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn none-style None-color btn-outline-none-style float-right my-2 my-sm-0 btn-go" type="submit">Go</button>
+            <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search">
+            <button class="custom-btn btn-go" type="submit">Go</button>
         </form>
     </div>
 </nav>

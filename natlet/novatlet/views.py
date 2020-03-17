@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from .models import Post, Gallery
 from .forms import *
+from .utils import *
 
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
@@ -15,18 +16,13 @@ import os.path
 
 # Create your views here.
 
-class Index(View):
+class Index(DisplayObjectMixin, View):
     model = Post
-
-    def get(self, request):
-        posts = Post.objects.all()
-
-        return render(request, 'novatlet_temp/index.html', context={"posts": posts})
+    template = 'novatlet_temp/index.html'
 
 
 class PostDetail(View):
     model = Post
-
     def get(self, request, slug):
         get_object = get_object_or_404(self.model, slug__iexact=slug)
         p = get_object.related_gallery
@@ -36,6 +32,17 @@ class PostDetail(View):
                         self.model.__name__.lower(): get_object,
                         'gallery': gallery,
                         })
+
+class TagList(DisplayObjectMixin, View):
+    model = Tag
+    template = 'novatlet_temp/tag_list.html'
+
+
+class TagDetail(View):
+    def get(self, request, slug):
+        get_tag = get_object_or_404(Tag, slug__iexact=slug)
+        return render(request, 'novatlet_temp/tag_detail.html', context={'tag_detail': get_tag})
+
 
 
 class GallaryCreate(View):
@@ -105,20 +112,6 @@ class GallaryCreate(View):
                                        'location_field': bound_form_1.GetPhotoField(), 
                                          })
 
-class TagList(View):
-    model = Tag
-
-    def get(self, request):
-        get_tag = Tag.objects.all()
-        return render(request, 'novatlet_temp/tag_list.html', context={'get_tag': get_tag})
-
-class TagDetail(View):
-    model = Tag
-    def get(self, request, slug):
-        get_tag = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, 'novatlet_temp/tag_detail.html', context={'tag_detail': get_tag})
-
-
 
 # handlers zone
 
@@ -148,8 +141,7 @@ class AthleteView(View):
             bound_form = self.filter_form(request.POST)
 
             if bound_form.has_changed:
-                #get_athlete = self.model.objects.filter(gender=request.POST['gender'])
-                
+
                 valid_fields = {}
                 get_athlete = []
 
@@ -176,10 +168,6 @@ class AthleteView(View):
                 get_athlete = filter_object(valid_fields)
                 print(get_athlete)
                 AVALIABLE_CONTENT = get_athlete.count()
-    
-
-
-
 
                 return render(request, 'novatlet_temp/athlete_list.html', context={
                                                                                 'get_athlete': get_athlete,
@@ -188,3 +176,13 @@ class AthleteView(View):
                                                                                    })
 
             return redirect(reverse("athlete_list_url"))
+
+
+
+class ArchivePage(View):
+    model = Post
+    
+
+    def get(self, request):
+        pass
+

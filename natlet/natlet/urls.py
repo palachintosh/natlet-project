@@ -26,6 +26,7 @@ from novatlet.views import custom_handler404
 urlpatterns = [
     path('', based_page),
     path('novatlet/', include('novatlet.urls')),
+    path('contacts/', include('contacts.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
