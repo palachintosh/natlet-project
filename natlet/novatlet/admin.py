@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from competition.models import CompetitionList
 
 # Register your models here.
 
@@ -10,3 +11,4 @@ admin.site.register(Photos)
 admin.site.register(Tag)
 admin.site.register(Award)
 admin.site.register(Athlete)
+admin.site.register(CompetitionList)

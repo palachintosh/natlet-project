@@ -27,6 +27,8 @@ urlpatterns = [
     path('', based_page),
     path('novatlet/', include('novatlet.urls')),
     path('contacts/', include('contacts.urls')),
+    path('hale_of_fame/athletes/', include('athletes.urls')),
+    path('competition/', include('competition.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

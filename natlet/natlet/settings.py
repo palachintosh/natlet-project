@@ -42,6 +42,8 @@ EMAIL_PORT = 25
 INSTALLED_APPS = [
     'novatlet',
     'contacts',
+    'athletes',
+    'competition',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,24 @@
+ 
+ 
+ <!-- <script>
+        function clickHandler(comp) {
+            if (document.location.href.indexOf(comp) != -1 ) {
+                console.log(comp)
+                $('#exampleModal').modal('show');
+            }
+        }
+</script> -->
+
+
+<div class="card mt-2">
+    <div class="card-body" style="background-color: rgb(248, 248, 248); border-radius: 1rem;">
+        <div class="row row justify-content-between">
+            <h5 class="col card-title">{{ comp.title }}</h5>
+            <p class="col text-muted" style="text-align: right; margin-bottom: 0;">{{ comp.comp_date_start }} - {{ comp.comp_date_end }}</p>
+        </div>
+      <small class="card-subtitle mb-3 text-muted">{{ comp.comp_type }}, {{ comp.rank }}-го рангу</small>
+      <p class="text-muted">Мiсце проведення: {{ comp.location }} ({{ comp.rank_code }})</p>
+      <p class="card-text">{{ comp.description }}</p>
+      <a href="http://127.0.0.1:8000/competition/archive?{{ comp.title|cut:' ' }}"  class="card-link float-right">Додаткова iнформацiя</a>
+    </div>
+</div>

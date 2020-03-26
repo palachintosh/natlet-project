@@ -39,9 +39,11 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{% url 'index_page_url' %}">News</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'tag_list_url' %}">Our tags</a>
-            </li>
+            {% if request.user.is_authenticated and request.user.is_staff %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tag_list_url' %}">Our tags</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'athlete_list_url' %}">Hale of fame</a>
             </li>
@@ -69,17 +71,6 @@
         </form>
     </div>
 </nav>
-
-    <!-- <div class="row justify-content-start">
-        <div class="col-md-12"></div>
-        <div class=" logo col-12 col-sm-12 col-md-3 col-xl-2">
-            <img src="{% static 'images/Log1.png' %}"/>
-        </div>
-        <div class="d-none d-sm-none d-md-block col-md-6 col-xl-10">
-            <h1 class="title align-top">Легкая атлетика</h1>
-            <span class="align-bottom">Официальный сайт ДЮСШ Нововолынск, отделение легкой атлетики</span>
-        </div>
-    </div> -->
     
     {% block logo %}{% endblock %}
     {% block handler %} {% endblock %}

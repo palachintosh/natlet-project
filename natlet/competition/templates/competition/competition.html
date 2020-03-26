@@ -1,0 +1,20 @@
+{% extends 'novatlet_temp/base_page.html' %}
+
+{% block title %}
+    Архив соревнований - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    {% for comp in get_competition %}
+        {% include 'competition/includes/comp_card.html' %}
+    {% endfor %}
+
+   
+
+{% endblock %}
+
+
+{% block sidebar %}
+    
+{% endblock %}

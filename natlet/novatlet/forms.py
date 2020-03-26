@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import formset_factory
 from .models import *
 from django.core.exceptions import ValidationError
 import os.path
@@ -53,61 +52,3 @@ class PhotoForm(forms.Form):
             return cleaned_form_field
 
     img_object = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
-
-
-    # def save(self):
-    #     new_add_dir = Photos.objects.create(
-    #         img_object = self.cleaned_data['img_object']
-    #     )
-    #     return new_add_dir
-
-
-
-        
-
-
-
-# class PhotoForm(forms.ModelForm):
-#     class Meta:
-#         model = Photos
-#         fields = ['img_object', 'location']
-
-#         widgets = {
-#             'img_object': forms.FileInput(attrs={'multiple': True,
-#                                                 'class': 'form-control',
-#                                                 # 'enctype': 'multipart/form-data',
-#                                                 }),
-#             'location': forms.SelectMultiple(attrs={'class': 'form-control'}),
-#         }
-
-class FilterForm(forms.Form):
-    SELECT_GENDER = [
-        ('None', 'Gender'),
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-    ]
-
-    gender = forms.ChoiceField(choices=SELECT_GENDER, widget=forms.Select(attrs={'class': 'form-control'}))
-    name = forms.CharField(widget=forms.TextInput(attrs={
-                                                        'class': 'form-control mb-2 mr-sm-2',
-                                                        'placeholder': 'Имя или фамилия'
-                                                        }), required=False)
-    birthday = forms.DateField(widget=forms.DateInput(attrs={
-        'class': 'form-control mb-2 mr-sm-2',
-        
-        'type': 'date',
-    }), required=False)
-
-
-    def clean_name_and_surname(self):
-        ret_name = self.cleaned_data['name'].lower()
-        if ret_name == '' or ret_name == None:
-            return None
-        return ret_name
-
-    def clean_birthday(self):
-        print("validate")
-        ret_birthday = self.cleaned_data['birthday']
-        if ret_birthday == '':
-            return None
-        return ret_birthday

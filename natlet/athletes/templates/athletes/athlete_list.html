@@ -30,16 +30,16 @@
 
 
     {% if av_content %}
-        {% include 'novatlet_temp/includes/alert_success.html' %}
+        {% include 'athletes/includes/alert_success.html' %}
     {% elif av_content <= 0 %}
-        {% include 'novatlet_temp/includes/alert.html' %}
+        {% include 'athletes/includes/alert.html' %}
     {% endif %}
 
 
 
 
     {% for ath in get_athlete %}
-        {% include 'novatlet_temp/includes/athlete_card.html' %}
+        {% include 'athletes/includes/athlete_card.html' %}
     {% endfor %}
 
 {% endblock %}
