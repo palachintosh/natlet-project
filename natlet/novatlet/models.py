@@ -1,9 +1,10 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.core.files.storage import FileSystemStorage
-from django.db.models.signals import post_save
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
+# from django.db.models.signals import post_save
+# from django.db.models.signals import pre_save
+# from django.dispatch import receiver
+from natlet.custom_project_utils import gen_slug
 
 
 
@@ -34,6 +35,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = gen_slug(self.title)
+        super(Post, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):
@@ -71,8 +76,8 @@ class Gallery(models.Model):
 
 class Photos(models.Model):
     #img_object = models.ImageField(upload_to=save_path(), db_index=True, verbose_name="Images")
-    img_object = models.ImageField(upload_to='gallery/', db_index=True, verbose_name="Images")
     # location = models.ForeignKey(Location, models.CASCADE, related_name='photos')
+    img_object = models.ImageField(upload_to='gallery/', db_index=True, verbose_name="Images")
     location = models.ForeignKey('Location', models.CASCADE, related_name='photos', blank=True, null=True)
 
 

@@ -30,6 +30,7 @@ urlpatterns = [
     path('hale_of_fame/athletes/', include('athletes.urls')),
     path('competition/', include('competition.urls')),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = custom_handler404

@@ -27,6 +27,5 @@ class CompetitionList(models.Model):
         #return reverse('comp_detail_url', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
-        print(args, kwargs)
         self.slug = gen_slug(self.title)
         super(CompetitionList, self).save(*args, **kwargs)

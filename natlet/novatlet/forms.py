@@ -3,6 +3,7 @@ from .models import *
 from django.core.exceptions import ValidationError
 import os.path
 
+
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
@@ -52,3 +53,5 @@ class PhotoForm(forms.Form):
             return cleaned_form_field
 
     img_object = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+

@@ -39,19 +39,19 @@ class DisplayObjectMixin():
     template = None
 
     def get(self, request):
-        if Tag:
+        if self.model.__name__ == 'Tag':
             tags = Tag.objects.all()
             return render(request, self.template, locals())
 
         object_mix = self.model.objects.filter(post_date__lte=timezone.now()).order_by('-post_date')
         p = PaginatorObjectMixin()
         pag_object_mix = p.paginator_custom(request, object_mix)
-        admin_ogj = True
+        admin_obj = True
 
         return render(request, self.template, context={
                                                       self.model.__name__.lower() + 's': pag_object_mix['count_posts'],
                                                       'paginator_dict': pag_object_mix,
-                                                      'admin_obj': admin_ogj,
+                                                      'admin_obj': admin_obj,
                                                       #'count_posts': p.paginator_custom(request, object_mix)
                                                       })
 

@@ -39,17 +39,24 @@ EMAIL_PORT = 25
 
 # Application definition
 
+CKEDITOR_UPLOAD_PATH = "images/"
+CKEDITOR_BASEPATH = "/static/www/ckeditor/ckeditor/"
+
+
 INSTALLED_APPS = [
-    'novatlet',
-    'contacts',
-    'athletes',
-    'competition',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
+    'novatlet',
+    'contacts',
+    'athletes',
+    'competition',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
