@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django import forms
 from .models import *
+from comment.models import Comment
 from competition.models import CompetitionList
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -19,6 +20,13 @@ class PostAdminForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
 
+class CommentAdminForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea())
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    form = CommentAdminForm
+
 
 #admin.site.register(Post, PostAdmin)
 admin.site.register(Gallery)
@@ -29,4 +37,5 @@ admin.site.register(Award)
 admin.site.register(Athlete)
 admin.site.register(CompetitionList)
 
+#admin.site.register(Comment, CommentAdmin)
 

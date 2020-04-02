@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+# from django.shortcuts import render
+# from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from .models import Post, Gallery
+from comment.models import Comment
 from .forms import *
 from .utils import *
+from comment.views import CommentView
+from comment.forms import CommentForm
 
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
@@ -24,16 +27,25 @@ class Index(DisplayObjectMixin, View):
 
 class PostDetail(View):
     model = Post
+    model_form = CommentForm
+
     def get(self, request, slug):
         get_object = get_object_or_404(self.model, slug__iexact=slug)
         p = get_object.related_gallery
         gallery = Photos.objects.filter(location=p)
         admin_obj = True
+        comment = Comment.objects.filter(comment_for_post=get_object)
+
+        
+        comment_form = self.model_form(data={'hidden_slug': slug, 'name': 'sth'})
 
         return render(request, 'novatlet_temp/post_detail.html', context={
                         self.model.__name__.lower(): get_object,
                         'gallery': gallery,
                         'admin_obj': admin_obj,
+                        'comment': comment,
+                        'comment_form': comment_form,
+                        'returned_slug': slug,
                         })
 
 class TagList(DisplayObjectMixin, View):

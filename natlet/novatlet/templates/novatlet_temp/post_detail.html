@@ -8,6 +8,11 @@
 {% block content %}
 
     <h3>{{ post.title }}</h3>
+
+        {% for tag in post.tags.all %}
+            <p class="tag-in-post"><a href="{{ tag.get_absolute_url }}">{{ tag.tag_title }}</a> </p>
+        {% endfor %}
+
     <p>{% autoescape off %} {{ post.body }} {% endautoescape %}</p>
     <p> {{ post.body }}</p>
     <!-- <img src="{{ post.post_img.url }}" alt=""> -->
@@ -16,7 +21,31 @@
 
     {% include 'novatlet_temp/includes/slider.html' %}
 
+    <hr class="mt-5 mb-5 hr-grad">
+
+    <h5>Комментарии:</h5>
+
+
+
+    <form action="{% url 'comment_action_url' %}" method="post", class="form-model mb-5">
+        {% csrf_token %}
+
+        {% for comment_field in comment_form %}
+            {{ comment_field.label }}
+            {{ comment_field }}
+        {% endfor %}
+        
+        <button class="custom-btn float-right mt-2" name="make_comment" type="submit">Оставить комментарий</button>
+    </form>
+
+    {% for comment_instanse in comment %}
+        {% include 'novatlet_temp/includes/comment.html' %}
+    {% endfor %}
+
+
+
 {% endblock %}
+
 
 
 {% block sidebar %}

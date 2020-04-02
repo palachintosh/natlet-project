@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'contacts',
     'athletes',
     'competition',
+    'comment',
     'ckeditor',
     'ckeditor_uploader',
 ]
