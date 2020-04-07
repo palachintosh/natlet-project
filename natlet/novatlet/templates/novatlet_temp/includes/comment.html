@@ -1,5 +1,7 @@
+{% load staticfiles %}
+
 <div class="media mt-4">
-    <img src="..." class="mr-3" alt="...">
+    <img src="{% static 'icons/iconfinder-idea-4341295_120562.svg' %}" class="mr-3" alt="..." width="10%" style="max-width: 64px;">
     <div class="media-body">
       <h5 class="mt-0">{{ comment_instanse.name }}</h5>
       {{ comment_instanse.body }}

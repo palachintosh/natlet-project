@@ -7,6 +7,13 @@
 
 {% block content %}
 
+    {% if posts|length == 0 %}
+        {% include 'novatlet_temp/includes/alert.html' %}
+
+    {% elif posts|length != 0 and alert_mess == False %}
+        {% include 'novatlet_temp/includes/alert_success.html' %}
+    {% endif %}
+
     {% for post in posts %}
         {% include 'novatlet_temp/includes/post_card_template.html' %}
     {% endfor %}
@@ -39,5 +46,7 @@
 {% endblock %}  
 
 {% block sidebar %}
-    {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
+    {% for sp in get_sidebar_post %}
+        {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
+    {% endfor %}
 {% endblock %}

@@ -7,6 +7,7 @@ from .forms import *
 from .utils import *
 from comment.views import CommentView
 from comment.forms import CommentForm
+from natlet.custom_project_utils import GetRandomSidebarPost
 
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
@@ -14,18 +15,45 @@ from django.core.files.base import ContentFile
 from django.template import RequestContext
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 import os.path
 
 
 
 # Create your views here.
 
+class Variables:
+    def post_filter_utils(self):
+        post_filter = Post.objects.filter(post_date__lte=timezone.now()).order_by('-post_date')
+        return post_filter
+
 class Index(DisplayObjectMixin, View):
     model = Post
     template = 'novatlet_temp/index.html'
 
 
-class PostDetail(View):
+
+class CustomSearch(DisplayObjectMixin, View):
+    model = Post
+    template = 'novatlet_temp/index.html'
+
+
+    # def get(self, request):
+    #     search_q = request.GET.get('search', '')
+    #     dispaly_obj = DisplayObjectMixin()
+
+    #     if search_q:
+    #         posts = self.model.objects.filter(Q(title__icontains=search_q) | Q(body__icontains=search_q))
+    #     else:
+    #         posts = dispaly_obj.get(request, Variables.post_filter_utils(self.model), alert_mess=True)
+        
+    #     return p_p.paginator_custom(request, posts)
+
+        
+
+
+
+class PostDetail(View, GetRandomSidebarPost):
     model = Post
     model_form = CommentForm
 
@@ -34,10 +62,11 @@ class PostDetail(View):
         p = get_object.related_gallery
         gallery = Photos.objects.filter(location=p)
         admin_obj = True
-        comment = Comment.objects.filter(comment_for_post=get_object)
 
-        
-        comment_form = self.model_form(data={'hidden_slug': slug, 'name': 'sth'})
+        comment = Comment.objects.filter(comment_for_post=get_object)        
+        comment_form = self.model_form(data={'hidden_slug': slug})
+
+        get_sidebar_posts = GetRandomSidebarPost(model=self.model).get_newest_post()
 
         return render(request, 'novatlet_temp/post_detail.html', context={
                         self.model.__name__.lower(): get_object,
@@ -46,6 +75,7 @@ class PostDetail(View):
                         'comment': comment,
                         'comment_form': comment_form,
                         'returned_slug': slug,
+                        'get_sidebar_posts': get_sidebar_posts, 
                         })
 
 class TagList(DisplayObjectMixin, View):

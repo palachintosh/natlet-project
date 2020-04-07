@@ -49,5 +49,7 @@
 
 
 {% block sidebar %}
-    {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
+    {% for sp in get_sidebar_posts %}
+        {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
+    {% endfor %}
 {% endblock %}

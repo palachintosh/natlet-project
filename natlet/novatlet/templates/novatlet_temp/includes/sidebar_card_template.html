@@ -1,9 +1,9 @@
-<div class="card sidebar-card">
-    <a href="#" class="card-a">
+<div class="card sidebar-card mb-3">
+    <a href="{{ sp.get_absolute_url }}" class="card-a">
         <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+            <h4 class="card-title">{{ sp.title }}</h4>
+            <p class="card-text">{{ sp.description }}</p>
+            <small class="float-right" style="color: gray">{{ sp.post_date|date }}</small>
         </div>
     </a>
 </div>

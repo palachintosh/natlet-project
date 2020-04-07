@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('', Index.as_view(), name="index_page_url"),
+    path('search/', CustomSearch.as_view(), name="search_func_url"),
     path('post/<str:slug>/', PostDetail.as_view(), name="post_page_url"),
     path('tag/', TagList.as_view(), name="tag_list_url"),
     path('tag/<str:slug>/', TagDetail.as_view(), name="tag_detail_url"),

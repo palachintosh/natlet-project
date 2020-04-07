@@ -65,8 +65,8 @@
                 <a class="nav-link" href="#">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{% url 'search_func_url' %}">
+            <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="custom-btn btn-go" type="submit">Go</button>
         </form>
     </div>
@@ -74,13 +74,13 @@
     
     {% block logo %}{% endblock %}
     {% block handler %} {% endblock %}
-    <div class="container-fluid mt-2">
+    <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 col-lg-7">
                 {% block content %}<!--Content will be here-->{% endblock %}
             </div>
-            <div class="col-lg-3 d-none d-md-none d-lg-block">
+            <div class="col-lg-3 d-none d-md-none d-lg-block mt-4">
                 {% block sidebar %}<!--Sidebar-->{% endblock %}
             </div>
         </div>

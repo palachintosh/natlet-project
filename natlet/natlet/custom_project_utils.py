@@ -1,6 +1,8 @@
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from time import time
+#from novatlet.models import Post
+import datetime 
 
 def gen_slug(s):
     s.lower()
@@ -25,3 +27,13 @@ def gen_slug(s):
             raise ValidationError("Slug can't be generated!")
     new_slug = ''.join(map(str, s_encode))
     return new_slug + '-' + str(int(time()))
+
+
+class GetRandomSidebarPost:
+    def __init__(self, model=None):
+        self.model = model
+
+    def get_newest_post(self):
+        get_newest_posts = self.model.objects.filter(post_date__lte=datetime.datetime.today())[:3]
+
+        return get_newest_posts
