@@ -16,6 +16,7 @@ from django.template import RequestContext
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 import os.path
 
 
@@ -38,32 +39,21 @@ class CustomSearch(DisplayObjectMixin, View):
     template = 'novatlet_temp/index.html'
 
 
-    # def get(self, request):
-    #     search_q = request.GET.get('search', '')
-    #     dispaly_obj = DisplayObjectMixin()
-
-    #     if search_q:
-    #         posts = self.model.objects.filter(Q(title__icontains=search_q) | Q(body__icontains=search_q))
-    #     else:
-    #         posts = dispaly_obj.get(request, Variables.post_filter_utils(self.model), alert_mess=True)
-        
-    #     return p_p.paginator_custom(request, posts)
-
-        
-
-
 
 class PostDetail(View, GetRandomSidebarPost):
     model = Post
     model_form = CommentForm
-
+   
     def get(self, request, slug):
+        alert_show = request.GET.get('alert_mess')
+        print("----------------------", alert_show)
+
         get_object = get_object_or_404(self.model, slug__iexact=slug)
         p = get_object.related_gallery
         gallery = Photos.objects.filter(location=p)
         admin_obj = True
 
-        comment = Comment.objects.filter(comment_for_post=get_object)        
+        comment = Comment.objects.filter(comment_for_post=get_object)
         comment_form = self.model_form(data={'hidden_slug': slug})
 
         get_sidebar_posts = GetRandomSidebarPost(model=self.model).get_newest_post()
@@ -75,12 +65,13 @@ class PostDetail(View, GetRandomSidebarPost):
                         'comment': comment,
                         'comment_form': comment_form,
                         'returned_slug': slug,
-                        'get_sidebar_posts': get_sidebar_posts, 
+                        'get_sidebar_posts': get_sidebar_posts,
                         })
 
-class TagList(DisplayObjectMixin, View):
+class TagList(LoginRequiredMixin, DisplayObjectMixin, View):
     model = Tag
     template = 'novatlet_temp/tag_list.html'
+    raise_exception = True
 
 
 class TagDetail(View):
@@ -92,8 +83,9 @@ class TagDetail(View):
 
 
 
-class GallaryCreate(View):
+class GallaryCreate(LoginRequiredMixin, View):
     model = [LocationForm, PhotoForm]
+    raise_exception = True
 
     def get(self, request):
         gallery_form = self.model[0]

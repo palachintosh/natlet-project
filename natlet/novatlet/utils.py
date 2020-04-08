@@ -76,3 +76,7 @@ class DisplayObjectMixin:
                                                       'alert_mess': self.alert_mess,
                                                       })
 
+
+
+class CaptchaChecking:
+    pass

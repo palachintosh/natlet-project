@@ -13,5 +13,5 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={"class": "form-control"}),
         }
     
-    hidden_slug = forms.CharField(widget=forms.HiddenInput())
+    hidden_slug = forms.CharField(label='', widget=forms.HiddenInput())
     

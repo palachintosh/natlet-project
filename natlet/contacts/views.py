@@ -8,6 +8,8 @@ from django.template import loader
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.contrib import messages
+
+
 # Create your views here.
 
 class Contacts(View):
@@ -53,7 +55,6 @@ class Contacts(View):
             else:
                 print('error code here! ')
                 messages.error(request, 'Invalid capthca. Try again')
-        print('else here! ')
         return redirect(reverse("contact_p_url"))
 
 

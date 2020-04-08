@@ -29,7 +29,8 @@ class Post(models.Model):
     related_gallery = models.ForeignKey(Location, models.SET_NULL, blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
-    def get_absolute_url(self):
+    def get_absolute_url(self, *args):
+        print("args============", *args)
         return reverse('post_page_url', kwargs={'slug': self.slug})
 
 

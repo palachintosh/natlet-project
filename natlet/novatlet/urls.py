@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 
+
 urlpatterns = [
     path('', Index.as_view(), name="index_page_url"),
     path('search/', CustomSearch.as_view(), name="search_func_url"),

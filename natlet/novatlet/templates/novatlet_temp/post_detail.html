@@ -6,6 +6,16 @@
 {% endblock %}
 
 {% block content %}
+    {% include 'novatlet_temp/includes/modal_danger.html' %}
+    <script>
+        if (document.location.href.indexOf('alert_mess=True') != -1) {
+            $('#AlertDangerModal').modal('show')
+        }
+
+        if (document.location.href.indexOf('alert_mess=False') != -1) {
+            $('#AlertModal').modal('show')
+        }
+    </script>
 
     <h3>{{ post.title }}</h3>
 
@@ -23,6 +33,7 @@
 
     <hr class="mt-5 mb-5 hr-grad">
 
+
     <h5>Комментарии:</h5>
 
 
@@ -31,11 +42,19 @@
         {% csrf_token %}
 
         {% for comment_field in comment_form %}
-            {{ comment_field.label }}
-            {{ comment_field }}
+
+        
+        {{ comment_field.label }}
+        {{ comment_field }}
+        
         {% endfor %}
         
-        <button class="custom-btn float-right mt-2" name="make_comment" type="submit">Оставить комментарий</button>
+        <div class="d-inline-flex">
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha float-left mt-2" data-sitekey="6Lf92-EUAAAAANywzHdBhjgQ3GrFf_apwe0ZDWqL"></div>
+        </div>
+        <button class="custom-btn float-right mt-2" name="make_comment" type="submit">Залишити коментар!</button>
+
     </form>
 
     {% for comment_instanse in comment %}
@@ -53,3 +72,4 @@
         {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
     {% endfor %}
 {% endblock %}
+
