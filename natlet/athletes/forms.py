@@ -32,3 +32,7 @@ class FilterForm(forms.Form):
         if ret_birthday == '':
             return None
         return ret_birthday
+    
+
+class TestForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput())

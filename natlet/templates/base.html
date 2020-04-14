@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script>window.CKEDITOR_BASEPATH = '/my_static/ckeditor/ckeditor/';</script>
+    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
+    
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -45,7 +48,12 @@
                 </li>
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'athlete_list_url' %}">Hale of fame</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hale of fame
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{% url 'score_page_url' %}">Scores</a>
+                        </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact_p_url' %}">Contacts</a>
@@ -74,6 +82,8 @@
     
     {% block logo %}{% endblock %}
     {% block handler %} {% endblock %}
+    {% block athlete_scores %} 
+    {% endblock %}
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-md-1"></div>

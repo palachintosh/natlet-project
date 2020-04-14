@@ -68,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'natlet.urls'
@@ -156,3 +157,21 @@ MEDIA_URL = '/media/'
 
 GOOGLE_RECAPTCHA_KEY = '6Lf92-EUAAAAANywzHdBhjgQ3GrFf_apwe0ZDWqL'
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lf92-EUAAAAABbiVG2vHe7NCzEgd_Co78cf-ppB'
+
+
+#Content-Security-Policy directives
+
+# CSP_DEFAULT_SRC = ("'none'", )
+# CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+# # CSP_SCRIPT_SRC = ("'self'",
+# #                   'unsafe-inline',
+# #                   'https://code.jquery.com/', 
+# #                   'https://*.google.com/',
+# #                   'https://www.gstatic.com/',
+# #                   'https://cdn.jsdelivr.net/',
+# #                   'https://*.bootstrapcdn.com/',
+# #                   )
+CSP_SCRIPT_SRC = ("'none'")
+# CSP_FONT_SRC = ("'none'",)
+# # CSP_IMG_SRC = ("'none'", )
+# # CSP_MEDIA_SRC = ("'none'", )

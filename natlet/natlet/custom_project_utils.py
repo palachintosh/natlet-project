@@ -37,3 +37,7 @@ class GetRandomSidebarPost:
         get_newest_posts = self.model.objects.filter(post_date__lte=datetime.datetime.today())[:3]
 
         return get_newest_posts
+
+
+class RandomImage:
+    pass

@@ -11,5 +11,14 @@ class Comment(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     comment_for_post = models.ForeignKey(Post, models.SET_NULL, blank=True, null=True)
 
+    moderate = models.BooleanField(verbose_name="Опубликовать!", default=False)
+
+
     def __str__(self):
         return self.email
+    
+    def get_img_url(self, *args, **kwargs):
+        first = self.name[0].lower()
+        if first == 'p':
+            url = 'icons/{}.svg'.format(first)
+            return url

@@ -58,7 +58,10 @@
     </form>
 
     {% for comment_instanse in comment %}
-        {% include 'novatlet_temp/includes/comment.html' %}
+        {% if comment_instanse.moderate %}
+            <!-- Render comment if field of comment model has atribute "moderate" -->
+            {% include 'novatlet_temp/includes/comment.html' %}
+        {% endif %}
     {% endfor %}
 
 

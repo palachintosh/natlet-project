@@ -1,10 +1,13 @@
 {% load staticfiles %}
 
 <div class="media mt-4">
+  <script>
+    
+  </script>
     <img src="{% static 'icons/iconfinder-idea-4341295_120562.svg' %}" class="mr-3" alt="..." width="10%" style="max-width: 64px;">
     <div class="media-body">
       <h5 class="mt-0">{{ comment_instanse.name }}</h5>
       {{ comment_instanse.body }}
     </div>
-    <small>{{ comment_instanse.time }}</small>
+    <small style="color: gray">{{ comment_instanse.time }}</small>
   </div>

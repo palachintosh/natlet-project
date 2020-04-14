@@ -3,6 +3,7 @@ from django import forms
 from .models import *
 from comment.models import Comment
 from competition.models import CompetitionList
+from athletes.models import AthletesScore
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from ckeditor.widgets import CKEditorWidget
@@ -20,6 +21,8 @@ class PostAdminForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
 
+
+
 class CommentAdminForm(forms.ModelForm):
     body = forms.CharField(widget=forms.Textarea())
 
@@ -27,8 +30,22 @@ class CommentAdminForm(forms.ModelForm):
 class CommentAdmin(admin.ModelAdmin):
     form = CommentAdminForm
 
+class AthletesScoreAdminForm(forms.ModelForm):
+    score_table = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = AthletesScore
+        fields = '__all__'
+
+@admin.register(AthletesScore)
+class AthletesScoreAdmin(admin.ModelAdmin):
+    form = AthletesScoreAdminForm
+
+
+
 
 #admin.site.register(Post, PostAdmin)
+#admin.site.register(AthletesScore)
 admin.site.register(Gallery)
 admin.site.register(Location)
 admin.site.register(Photos)

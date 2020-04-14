@@ -6,9 +6,11 @@ from django.core.paginator import PageNotAnInteger
 from django.utils.safestring import mark_safe
 from django.utils import timezone
 from .models import *
+from natlet import settings
 from natlet.custom_project_utils import GetRandomSidebarPost
 from django.db.models import Q
 
+import requests
 import time
 
 
@@ -79,4 +81,15 @@ class DisplayObjectMixin:
 
 
 class CaptchaChecking:
-    pass
+    
+    def capcha_response(self, request):
+        recaptcha_response = request.POST['g-recaptcha-response']
+        data = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response,
+            }
+
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+        
+        return result
