@@ -5,7 +5,7 @@
 *.pyc
 __pycache__/
 /natlet/__pycache__/
-local_settings.pyc
+local_settings.py
 atlet_site_db.sqlite3
 /media
 /static
