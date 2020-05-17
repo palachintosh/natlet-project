@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'comment',
     'ckeditor',
     'ckeditor_uploader',
+    'ajax',
 ]
 
 MIDDLEWARE = [
@@ -172,6 +173,8 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lf92-EUAAAAABbiVG2vHe7NCzEgd_Co78cf-ppB'
 # #                   'https://*.bootstrapcdn.com/',
 # #                   )
 CSP_SCRIPT_SRC = ("'none'")
-# CSP_FONT_SRC = ("'none'",)
-# # CSP_IMG_SRC = ("'none'", )
-# # CSP_MEDIA_SRC = ("'none'", )
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

@@ -1,0 +1,23 @@
+{% extends 'novatlet_temp/base_page.html' %}
+
+{% block title %}
+    Змагання - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <h4 style=" padding-left: 1rem">Очiкуванi змагання</h4>
+    </div>
+    <hr class="mb-5">
+    {% for comp in get_competition %}
+        {% include 'competition/includes/comp_card.html' %}
+    {% endfor %}
+
+
+
+{% endblock %}
+
+
+{% block sidebar %}
+    
+{% endblock %}

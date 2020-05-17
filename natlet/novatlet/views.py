@@ -46,7 +46,6 @@ class PostDetail(View, GetRandomSidebarPost):
    
     def get(self, request, slug):
         alert_show = request.GET.get('alert_mess')
-        print("----------------------", alert_show)
 
         get_object = get_object_or_404(self.model, slug__iexact=slug)
         p = get_object.related_gallery

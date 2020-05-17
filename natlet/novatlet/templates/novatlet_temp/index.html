@@ -46,6 +46,10 @@
 {% endblock %}  
 
 {% block sidebar %}
+    <div class="display-flex">
+        <h5>Додатково на цю тему: </h5>
+        <hr>
+    </div>
     {% for sp in get_sidebar_post %}
         {% include 'novatlet_temp/includes/sidebar_card_template.html' %}
     {% endfor %}

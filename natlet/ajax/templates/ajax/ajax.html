@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Like Post App</title>
+    <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+<body>
+        <div class="modal" id="AlertDangerModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Оййй.. Щось пiшло не так!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Здається, ви допустили помилку пiд час заповнення форми. Будь ласка, перевiрте правильнiсть введенних данних i спробуйте опублiкувати коментар знову.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <div class="display-3 color-red">
+            <center>DataFlair AJAX Tutorial<br>Post APP</center>
+        </div>
+        <div class='container jumbotron'>
+            <h3 class="display-5">chuje muje </h3>
+            <p class="lead">some text </p>
+            <p>
+                <div type="text/css" class="container">Author : palachintosh </div>
+                <a class="likebutton btn btn-primary btn-lg" id="like1" href="#" data-catid="1">Like</a>
+            </p>
+            <p id="message">
+            </p>
+        </div>
+
+       
+
+        <script type="text/javascript">
+            $('.likebutton').click(function () {
+                var id;
+                id = $(this).attr("data-catid");
+
+                $.ajax( 
+                    {
+                        type: "GET",
+                        url: "like",
+                        data: {
+                            post_id: id
+                        },
+                        success: function (data) {
+                            alert("message:" + '\n' + data);
+                            $('#like' + id).removeClass('btn btn-primary btn-lg');
+                            $('#like' + id).addClass('btn btn-success btn-lg');
+                            $('#AlertDangerModal').modal('show')
+                        }
+                    })
+            });
+        </script>
+
+
+    <form  id="TestForm">
+        
+        {{ test_form.as_p }}
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

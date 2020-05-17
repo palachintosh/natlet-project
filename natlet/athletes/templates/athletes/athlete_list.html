@@ -5,22 +5,32 @@
     Ours athlete - {{ block.super }}
 {% endblock %}
 
+{% block header %}
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"> -->
+    <!-- <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script> -->
+    <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="127.0.0.1:8000">
+{% endblock %}
+
+
 {% block content %}
+    <label style="margin-right: 15px;">Фильтр: </label>
     <form class="form-inline" style="align-items: baseline;" action="{% url 'athlete_list_url' %}" method="post">
         {% csrf_token %}
-        <label style="margin-right: 15px;">Фильтр: </label>
-        <label class="sr-only">Пол: </label>
+        
+        <label style="margin-right: 15px;">Пол: </label>
         {{ filter_row.gender }}
 
-        <label class="sr-only">Имя </label>
+        <label style="margin-inline: 20px 15px;">Iм'я: </label>
         {{ filter_row.name }}
 
-        <label class="sr-only">Имя </label>
+
         {% if field_row.errors %}
             <div class="alert alert-denger">
                 {{ field_row.errors }}
             </div>
         {% endif %}
+
+        <label style="margin-inline: 20px 15px;">Дата народження: </label>
         {{ filter_row.birthday }}
         
 
@@ -28,12 +38,13 @@
     </form>
 
 
-
-    {% if av_content %}
+    <div class="mt-4">
+        {% if av_content %}
         {% include 'athletes/includes/alert_success.html' %}
-    {% elif av_content <= 0 %}
+        {% elif av_content <= 0 %}
         {% include 'athletes/includes/alert.html' %}
-    {% endif %}
+        {% endif %}
+    </div>
 
 
 
@@ -42,4 +53,5 @@
         {% include 'athletes/includes/athlete_card.html' %}
     {% endfor %}
 
+        
 {% endblock %}

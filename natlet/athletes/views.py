@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.views.generic import View
 from django.http import JsonResponse
+from django.http import HttpResponse
 
 from novatlet.models import Athlete
 from .models import AthletesScore
@@ -86,20 +87,15 @@ class ModalShow(View):
     model = AthletesScore
 
     def get(self, request):
-        print('--------------ajax---------------')
-        print('--------------ajax---------------')
-
-        name = request.GET.get('username', None)
-
-        print(name, "-------------------")
+        name = request.GET.get('table_name', None)
 
         a = "{% include 'athletes/includes/score_table_modal.html' %}"
         table = self.model.objects.get(slug__iexact=name)
-
-        print("---------------name-----------: ", name, table)
+        
         data = {
             'table': table.score_table,
             'include_modal': a,
         }
-
         return JsonResponse(data)
+
+        # return JsonResponse(data, status="200")

@@ -8,15 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
-    <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
     
+    <!-- Bootstrap -->
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+    <!-- <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+    
+    {% block header %}{% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <!-- End bootstrap -->
@@ -29,7 +35,7 @@
             Home
         {% endblock %}
     </title>
-    {% block header %}{% endblock %}
+    
     {% block body_style %}
     {% endblock%}
 </head>
@@ -40,40 +46,38 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="{% url 'index_page_url' %}">News</a>
+        <a class="navbar-brand" href="{% url 'index_page_url' %}">Новини</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             {% if request.user.is_authenticated and request.user.is_staff %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'tag_list_url' %}">Our tags</a>
+                    <a class="nav-link" href="{% url 'tag_list_url' %}">Теги</a>
                 </li>
             {% endif %}
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Hale of fame
+                        Зал слави
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{% url 'score_page_url' %}">Scores</a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown" style="left: auto; top: unset;">
+                            <a class="dropdown-item" href="{% url 'athlete_list_url' %}">Найкращi атлети</a>
+                            <a class="dropdown-item" href="{% url 'score_page_url' %}">Рекорди</a>
                         </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact_p_url' %}">Contacts</a>
+                <a class="nav-link" href="{% url 'contact_p_url' %}">Контакти</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Competition
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Змагання
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Calendar</a>
-                  <a class="dropdown-item" href="#">Future competitions</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <a class="dropdown-item" href="#">Календар</a>
+                  <a class="dropdown-item" href="{% url 'expected_comp_url' %}">Усi змагання</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'archive_url' %}">Archive</a>
+                  <a class="dropdown-item" href="{% url 'archive_url' %}">Архiв</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Disabled</a>
-            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="{% url 'search_func_url' %}">
+        <form class="form-inline my-2 my-lg-0 unset-box-shadow" action="{% url 'search_func_url' %}">
             <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="custom-btn btn-go" type="submit">Go</button>
         </form>

@@ -30,7 +30,6 @@ class Post(models.Model):
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
     def get_absolute_url(self, *args):
-        print("args============", *args)
         return reverse('post_page_url', kwargs={'slug': self.slug})
 
 
