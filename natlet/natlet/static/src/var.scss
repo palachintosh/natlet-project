@@ -1,0 +1,27 @@
+$my-gray: #979696;
+$light-grey: #e2e2e2;
+$dark: #2c2c2c;
+$yellow: rgba(255, 253, 106, 0.72);
+$white: #ffffff;
+$bg_img: "{% static 'images/bg_image.jpg' %}";
+
+$none_button_outline: $white;
+$theme-colors: ();
+
+$colors: ();
+
+$theme-colors: map-merge(
+  (
+    "none-style": $none_button_outline,
+  ),
+  $theme-colors
+);
+
+$colors: map-merge(
+  (
+    "None-color": $white,
+  ),
+  $colors
+);
+
+$input-border-focus: red;

@@ -1,0 +1,261 @@
+@import "scss/bootstrap.scss";
+@import "var.scss";
+// @import "scss/_variables.scss";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+body {
+    margin-bottom: 6rem;
+}
+
+
+@mixin button-shadow-custom {
+    box-shadow: none;
+}
+
+@mixin form-control-focus{ 
+    $color: $input-border-focus;
+}
+
+.logo {
+    margin-left: 1.25em;
+    padding-right: 15px;
+}
+
+.title {
+    margin-left: 1.25em;
+    padding-left: 1.25em;
+    border-left: 1px solid $light-grey;
+}
+
+.title-top {
+    position: relative;
+    top: .3em;
+    font-weight: 100;
+}
+
+.title-top > span {
+    color: #5cc438;
+}
+
+.title-desc-bottom {
+    position: relative;
+    top: 65px;
+    color: $my-gray;
+}
+
+.header-border {
+    padding: 7px;
+    border-bottom: 3px solid $yellow;
+}
+
+.custom-btn {
+    background-color: $my-gray;
+    border-radius: .25rem;
+    border: 1px solid $my-gray;
+    color: $white;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    display: block;
+    padding: .5rem .7rem .5rem .7rem;
+    float: right;
+    outline: unset;
+}
+
+
+
+.custom-btn:hover {
+    text-decoration: none;
+    background-color: $white;
+    color: $dark
+}
+
+// .btn:hover {
+//     background-color: $white;
+//     color: $dark;
+// }
+
+.btn-go {
+    border-radius: 0 0.25rem 0.25rem 0;
+    line-height: 1.2rem;
+}
+
+.input-search-rad {
+    border-radius: .25rem 0 0 .25rem;
+}
+.card {
+    border: none;
+}
+
+.card-header {
+    border: none;
+    background-color: $white;
+}
+
+.card-header > h5 {
+    float: left;
+}
+
+.card-header > small {
+    float: right;
+    color: $my-gray;
+}
+
+.card-img {
+    padding: 20px;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+
+
+@each $color, $value in $theme-colors {
+    .btn-outline-#{$color} {
+      @include button-outline-variant($value);
+    }
+}
+
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 2.5rem;
+    background-color: #999999;
+    color: $white;
+    a {
+        color: $white;
+    }
+  }
+
+
+#carouselExampleControls {
+    width: 50%;
+}
+
+.tag-string {
+    margin-top: 5px;
+    background-color: $light-grey;
+    opacity: .9;
+    line-height: 2.3rem;
+    p {
+        margin: 0px;
+        float: left;
+        
+    }
+    small {
+        float: left;
+        margin-left: 0.9rem;
+        a {
+            color: $my-gray;
+            font-style: oblique;
+            text-decoration: underline;
+        }
+    }
+}
+
+.awards-block {
+    overflow: hidden;
+    height: max-content;
+    max-width: max-content;
+}
+
+.awards {
+    position: absolute;
+    bottom: 0rem;
+    width: inherit;
+    
+    background-color: rgba(0, 0, 0, 0.7);
+
+    ul {
+        padding-left: .3rem;
+        list-style: none;
+        li {
+            padding-inline: 3px;
+            float: left;
+        }
+    }
+}
+
+.awards ul li:hover {
+    cursor: pointer;
+}
+
+.form-control {
+    margin-inline-end: 15px;
+}
+
+.card-a {
+    color: #212529;
+    text-decoration: none;
+    outline: unset;
+}
+
+.card-a:hover {
+    text-decoration: none;
+    color: #212529;
+    outline: unset;
+}
+
+.sidebar-card {
+    background-color: rgb(243, 249, 255);
+    transition: background-color 0.25s;
+}
+
+.sidebar-card:hover {
+    background-color: rgb(215, 236, 255);
+}
+
+.tag-in-post {
+    margin-left: 1rem;
+    
+}
+
+.tag-in-post > a {
+    background-color: rgb(160, 166, 173);
+    color: rgb(255, 255, 255);
+    padding: 0.6rem;
+    border-radius: 10%;
+}
+
+.hr-grad {
+    border: none;
+    height: 1px;
+    background: linear-gradient(45deg, rgb(251, 16, 134), rgb(82, 28, 231) 50%);
+    opacity: .6;
+}
+
+.field-width {
+    width: 50%;
+}
+
+.share-block {
+    width: 48px;
+    height: 48px;
+    float: right;
+    outline: unset;
+    background-image: url("../icons/1485477087-share_78562.png");
+}
+
+.share-block:hover {
+    transition: color 0.15s, background-color 0.2s;
+    background-color: rgba(100, 255, 247, 0.513);
+    border-radius: 4px;
+}
+
+.input-search-rad {
+    border: none;
+    margin-inline-end: 0;
+}
+
+.unset-box-shadow > .form-control:focus
+
+ {
+    box-shadow: none;
+    outline: unset;
+    -webkit-box-shadow: none;
+    border: none;
+}

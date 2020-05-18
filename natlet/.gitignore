@@ -8,6 +8,6 @@ __pycache__/
 local_settings.py
 atlet_site_db.sqlite3
 /media
-# /static
-/natlet/static
+/static
+#/natlet/static
 /novatlet/__pycache__/
