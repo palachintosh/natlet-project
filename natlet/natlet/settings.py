@@ -25,7 +25,7 @@ SECRET_KEY = ')wfe0c!j6=^46cuxt$8%ch_oozt79ei6l)co*^bs#ja^@5#ajc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]']
 
 #DEFAULT_FROM_EMAIL = 'parser9000@gmail.com'
 
