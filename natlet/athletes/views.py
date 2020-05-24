@@ -80,8 +80,6 @@ class Score(View):
 
         return render(request, 'athletes/score_table.html', locals())
 
-    def post(self, request):
-        pass
 
 class ModalShow(View):
     model = AthletesScore
@@ -102,5 +100,9 @@ class ModalShow(View):
 
 
 class Score1(View):
+    model = AthletesScore
+
     def get(self, request):
-        return HttpResponse(content="Test")
+        best_score = self.model.objects.all()
+        
+        return render(request, 'athletes/score_table.html', locals())
