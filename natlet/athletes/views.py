@@ -99,3 +99,8 @@ class ModalShow(View):
         return JsonResponse(data)
 
         # return JsonResponse(data, status="200")
+
+
+class Score1(View):
+    def get(self, request):
+        return HttpResponse(content="Test")
