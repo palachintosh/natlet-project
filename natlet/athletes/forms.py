@@ -11,7 +11,7 @@ class FilterForm(forms.Form):
     gender = forms.ChoiceField(choices=SELECT_GENDER, widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={
                                                         'class': 'form-control mb-2 mr-sm-2',
-                                                        'placeholder': 'Имя или фамилия'
+                                                        'placeholder': "Ім'я"
                                                         }), required=False)
     birthday = forms.DateField(widget=forms.DateInput(attrs={
         'class': 'form-control mb-2 mr-sm-2',

@@ -156,8 +156,6 @@ STATIC_URL = '/static/www/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-GOOGLE_RECAPTCHA_KEY = '6Lf92-EUAAAAANywzHdBhjgQ3GrFf_apwe0ZDWqL'
-GOOGLE_RECAPTCHA_SECRET_KEY = '6Lf92-EUAAAAABbiVG2vHe7NCzEgd_Co78cf-ppB'
 
 
 #Content-Security-Policy directives

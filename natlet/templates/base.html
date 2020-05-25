@@ -78,8 +78,10 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 unset-box-shadow" action="{% url 'search_func_url' %}">
-            <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search" name="search">
-            <button class="custom-btn btn-go" type="submit">Go</button>
+            <div class="d-flex">
+                <input class="form-control input-search-rad" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="custom-btn btn-go" type="submit">Go</button>
+            </div>
         </form>
     </div>
 </nav>
@@ -100,6 +102,6 @@
         </div>
     </div>
 
-    <footer id="footer" class="text-center navbar-fixed-bottom">&#169 <a href="#">palachinto<span style="color: #1e82df">sh</span></a> {% now "Y" %}</footer>
+    <footer id="footer" class="text-center navbar-fixed-bottom">&#169 <a href="http://palachintosh.com/blog/">palachinto<span style="color: #1e82df">sh</span></a> {% now "Y" %}</footer>
 </body>
 </html>
